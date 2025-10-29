@@ -1,103 +1,142 @@
-import Image from "next/image";
+
+import HomeLayout from "./component/layout/HomeLayout";
+import { HomePageClient } from "./component/client/HomePageClient";
+import { Footer } from "./component/layout/Footer";
+
+const mockTrendingCoins = [
+  {
+    id: "bitcoin",
+    symbol: "btc",
+    name: "Bitcoin",
+    image: "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png",
+    currentPrice: 111278,
+    priceChange24h: 2598.32,
+    priceChangePercentage24h: 2.4,
+    marketCap: 2213329891462,
+    volume24h: 37353528227,
+    sparkline: [108500, 109200, 110100, 111000, 110800, 111100, 111278],
+    rank: 1,
+  },
+  {
+    id: "ethereum",
+    symbol: "eth",
+    name: "Ethereum",
+    image:
+      "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png",
+    currentPrice: 2789.39,
+    priceChange24h: 174.33,
+    priceChangePercentage24h: 6.67,
+    marketCap: 335421234567,
+    volume24h: 12345678901,
+    sparkline: [2600, 2650, 2700, 2750, 2720, 2780, 2789],
+    rank: 2,
+  },
+  {
+    id: "tether",
+    symbol: "usdt",
+    name: "Tether",
+    image:
+      "https://coin-images.coingecko.com/coins/images/325/large/Tether.png",
+    currentPrice: 1.0,
+    priceChange24h: 0.001,
+    priceChangePercentage24h: 0.1,
+    marketCap: 120000000000,
+    volume24h: 45000000000,
+    sparkline: [0.999, 1.0, 1.001, 1.0, 0.999, 1.0, 1.0],
+    rank: 3,
+  },
+];
+
+const mockNewsArticles = [
+  {
+    id: "1",
+    title: "Bitcoin Reaches New All-Time High Amid Institutional Adoption",
+    summary:
+      "Leading cryptocurrency Bitcoin has surged to unprecedented levels as major institutions continue to adopt digital assets, with MicroStrategy and Tesla leading the charge.",
+    content: "",
+    author: "John Doe",
+    publishedAt: "2025-01-10T10:00:00Z",
+    imageUrl:
+      "https://images.unsplash.com/photo-1605792657660-596af9009e82?w=400&h=200&fit=crop",
+    sourceUrl: "https://example.com/news/1",
+    source: "CryptoNews",
+    category: "bitcoin" as const,
+    readTime: 3,
+    tags: ["bitcoin", "institutional", "adoption"],
+  },
+  {
+    id: "2",
+    title: "Ethereum 2.0 Staking Rewards Hit Record Numbers",
+    summary:
+      "Ethereum validators are seeing increased rewards as the network continues to grow and mature, with over 32 million ETH now staked.",
+    content: "",
+    author: "Jane Smith",
+    publishedAt: "2025-01-10T08:30:00Z",
+    imageUrl:
+      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=200&fit=crop",
+    sourceUrl: "https://example.com/news/2",
+    source: "DeFi Today",
+    category: "ethereum" as const,
+    readTime: 4,
+    tags: ["ethereum", "staking", "rewards"],
+  },
+  {
+    id: "3",
+    title: "DeFi TVL Surpasses $200 Billion Milestone",
+    summary:
+      "Decentralized Finance protocols have reached a new milestone with Total Value Locked exceeding $200 billion across all chains.",
+    content: "",
+    author: "Mike Johnson",
+    publishedAt: "2025-01-10T06:15:00Z",
+    imageUrl:
+      "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=200&fit=crop",
+    sourceUrl: "https://example.com/news/3",
+    source: "DeFi Pulse",
+    category: "defi" as const,
+    readTime: 5,
+    tags: ["defi", "tvl", "milestone"],
+  },
+];
+
+const mockPortfolio = {
+  id: "default-portfolio",
+  name: "My Portfolio",
+  totalValue: 33553.575,
+  totalCost: 31000,
+  totalPnL: 2553.575,
+  totalPnLPercentage: 8.24,
+  dayChange: 680.23,
+  dayChangePercentage: 2.07,
+  holdings: [
+    {
+      coinId: "bitcoin",
+      symbol: "btc",
+      name: "Bitcoin",
+      amount: 0.5,
+      currentValue: 21625.225,
+      allocation: 64.4,
+      priceChange24h: 2.45,
+    },
+    {
+      coinId: "ethereum",
+      symbol: "eth",
+      name: "Ethereum",
+      amount: 5,
+      currentValue: 11928.35,
+      allocation: 35.5,
+      priceChange24h: -1.23,
+    },
+  ],
+};
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+     <HomeLayout>
+        <HomePageClient
+           trendingCoins = {mockTrendingCoins}
+           newsArticle = {mockNewsArticles}
+           portfolio = {mockPortfolio}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+     </HomeLayout>
   );
 }
