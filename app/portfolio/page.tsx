@@ -20,6 +20,6 @@ const mockPortfolio = {
     sharpeRatio: 1.2,
   };
 
-//   export default function PortfolioPage() {
-//     return <PortfolioPageClientComponent portfolio={mockPortfolio}/>
-//   }
+  export default function PortfolioPage() {
+    return <PortfolioPageClientComponent portfolio={mockPortfolio}/>
+  }
