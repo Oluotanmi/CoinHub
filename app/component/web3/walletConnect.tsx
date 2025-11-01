@@ -33,7 +33,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
         return (
             <DropdownMenu>
                 <DropdownMenuTrigger>
-                    <Button  variant="outline" className="gap-2">
+                    <Button asChild  variant="outline" className="gap-2">
                         <Wallet className="h-4 w-4" />
                     </Button>
                 </DropdownMenuTrigger>

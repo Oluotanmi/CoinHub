@@ -49,6 +49,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="flex h-14 items-center justify-between">
                 <div className="flex items-center space-x-3">
                     <Button
+                      asChild
                        variant="ghost"
                        className="xl:hidden"
                        size="icon"
@@ -71,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({
                     ( <Button
                     variant="ghost"
                     size="sm"
-                    asChild
+                    // asChild
                     className="hidden md:flex"
                     >
                         <Link
@@ -88,6 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
                     {/* notiification-Only for logged in users */}
                     {true &&
                       <Button
+                        //  asChild
                         variant="ghost"
                         size="icon"
                         className="relative "
@@ -110,6 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
                             (<DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                 <Button
+                                    asChild
                                     variant="ghost"
                                     className="relative h-8 w-8"
                                 >

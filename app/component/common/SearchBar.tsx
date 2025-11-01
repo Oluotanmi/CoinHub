@@ -57,6 +57,7 @@ export function SearchBar({
                 {
                     query && (
                         <Button
+                        //   asChild
                           variant="ghost"
                           size="sm"
                           className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0"

@@ -102,7 +102,7 @@ const navigationItems: NavigationItem[] = [
           <div className="flex h-full flex-col">
              <div className="flex items-center justify-between p-4 border-b lg:hidden">
                 <h2  className="text-lg font-semibold">Menu</h2>
-                <Button variant="ghost" size="icon" onClick={onClose}>
+                <Button asChild variant="ghost" size="icon" onClick={onClose}>
                     <X className="h-5 w-5" />
                 </Button>
              </div>

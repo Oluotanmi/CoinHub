@@ -97,6 +97,7 @@ export function HomePageClient({
                         <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-coingecko-green-500"/>
                         🔥 Trending
                         <Button
+                            asChild
                             variant="ghost"
                             size="sm"
                             className="ml-auto text-xs text-muted-foreground"

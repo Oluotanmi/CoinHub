@@ -61,6 +61,7 @@ export function MarketPageClient({ globalData }: MarketPageClientProps) {
                        <div className="flex items-center gap-4">
                         <Link href="/market/trending">
                             <Button
+                            // asChild 
                             variant="outline"
                             className="flex items-center gap-2"
                             >

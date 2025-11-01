@@ -86,7 +86,7 @@ export const Footer: React.FC = () => {
                     <div className="flex space-x-2">
                       {
                         socialLinks.map((social) => (
-                            <Button key={social.href} size="icon" asChild>
+                            <Button asChild  key={social.href} size="icon" >
                                 <Link
                                     href={social.href}
                                     target="_blank"

@@ -111,7 +111,7 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
             {/* Actions */}
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="w-8 h-8" >
+                    <Button asChild variant="ghost" size="icon" className="w-8 h-8" >
                         <MoreHorizontal className="h-4 w-4"/>
                     </Button>
                 </DropdownMenuTrigger>
@@ -132,7 +132,7 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
 
             {coins.length > 5 && (
                 <div className="mt-4 pt-4 border-t">
-                  <Button  variant="outline" className="w-full" asChildn>
+                  <Button  variant="outline" className="w-full" asChild>
                     <Link href="/market/trending">View All Trfending Coins</Link> 
                   </Button>
                 </div>
