@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./component/providers/providers";
 import { RouteGuard } from "./component/common/RouteGuard";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
   " Advanced Cryptocurrency Analytics & Portfolio Management",
   description:
     "The most comprehensive cryptocurrency platform with real-time market data, portfolio management, DeFi integration, and educational content. Track 10,000+ cryptocurrencies with advanced analytics.",
+  metadataBase: new URL(
+      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    ),
 };
 
 export default function RootLayout({

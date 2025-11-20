@@ -5,7 +5,7 @@ import {Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { DropdownMenuTrigger,DropdownMenu, DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu";
+import { DropdownMenu,DropdownMenuContent,DropdownMenuTrigger,DropdownMenuItem } from "../ui/dropdown-menu";
 import { MoreHorizontal, Star, TrendingUp } from "lucide-react";
 
 interface TrendingCoin {
@@ -60,8 +60,7 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
         </CardHeader>
         <CardContent>
             <div className="space-y-4">
-               {
-                coins.slice(0,5).map((coin, index) => (
+               { coins.slice(0,5).map((coin, index) => (
                     <div
                         key={coin.id}
                         className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors"

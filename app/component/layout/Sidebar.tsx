@@ -118,7 +118,7 @@ const navigationItems: NavigationItem[] = [
                          key={item.href}
                          href={item.href}
                          onClick={() => {
-                            if(window.innerWidth < 1024) {
+                            if(innerWidth < 1024) {
                               onClose()
                             }
                          }}
