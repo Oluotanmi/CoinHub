@@ -116,14 +116,14 @@ export const Header: React.FC<HeaderProps> = ({
                                     variant="ghost"
                                     className="relative h-8 w-8"
                                 >
-                                 <Avatar className="h-8 w-8">
+                                 {/* <Avatar className="h-8 w-8">
                                     <AvatarImage 
-                                    //    src="/cendclothing.png"
-                                    />
+                                       src="/cendclothing.png"
+                                     />
                                     <AvatarFallback>
 
                                     </AvatarFallback>
-                                 </Avatar>
+                                 </Avatar> */}
                                 </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent>
