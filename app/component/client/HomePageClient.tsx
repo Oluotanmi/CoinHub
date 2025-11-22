@@ -193,8 +193,8 @@ export function HomePageClient({
            <div className="lg:col-span-1">
              <TrendingCoins 
                 coins={trendingCoins}
-                onAddToWatchlist={handleAddToWatchlist}
-                onAddToPortfolio={handleAddToPortfolio}
+                // onAddToWatchlist={handleAddToWatchlist}
+                // onAddToPortfolio={handleAddToPortfolio}
              />
            </div>
 

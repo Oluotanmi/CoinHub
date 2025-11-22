@@ -35,11 +35,48 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
         onAddToWatchlist,
         onAddToPortfolio
      }) => {
-//    return(
-//     <svg>
 
-//     </svg>
-//    )
+   const MiniSparkline: React.FC<{ data: number[]; isPositive: boolean }> =({
+    data,
+    isPositive
+   }) => {
+    
+    
+    const min = Math.min(...data);
+    const max = Math.max(...data);
+    const range = max - min;
+
+    const points = data
+      .map((value, index) => {
+        const x = (index / (data.length - 1)) * 60;
+        const y = range === 0 ? 15 : 30 - ((value - min) / range) * 30;
+        return `${x},${y}`;
+      })
+       .join(" ")
+        
+   return(
+    <svg width="60" height="30" className="overflow-visible">
+      <polyline
+        points={points}
+        fill="none"
+        stroke={isPositive ? "#22c55e" : "#ef4444"}
+        strokeWidth="1.5"
+        className="drop-shadow-sm"
+      />
+    </svg>
+    );
+   };
+
+   if(isLoading){
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Trending</CardTitle>
+        </CardHeader>
+      </Card>
+    )
+
+   }
 
 
    return(
