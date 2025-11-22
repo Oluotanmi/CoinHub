@@ -71,7 +71,7 @@ interface HomePageClientProps {
 
 export function HomePageClient({
     trendingCoins,
-    newsArticles
+    // newsArticles
 }: HomePageClientProps){
 
     const handleAddToWatchlist = (coinId:string) => {
@@ -191,17 +191,17 @@ export function HomePageClient({
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
            {/* Left Column - Trending Coins */}
            <div className="lg:col-span-1">
-             <TrendingCoins 
-                coins={trendingCoins}
+             {/* <TrendingCoins 
+                // coins={trendingCoins}
                 // onAddToWatchlist={handleAddToWatchlist}
                 // onAddToPortfolio={handleAddToPortfolio}
-             />
+             /> */}
            </div>
 
             {/* Right Column - Featured News + Portfolio + Quick Actions */}
-           <div className="lg:col-span-1 space-y-6">
+           {/* <div className="lg:col-span-1 space-y-6">
               <FeaturedNews articles={newsArticles} />
-           </div>
+           </div> */}
          </div>
         </>
     )
