@@ -68,4 +68,6 @@ function PortfolioPageClientComponent({ portfolio }: PortfolioPageClientProps) {
     )
 }
 
-export default PortfolioPageClientComponent
+export const PortfolioPageClient = (
+  PortfolioPageClientComponent
+)

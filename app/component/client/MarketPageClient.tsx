@@ -83,41 +83,28 @@ export function MarketPageClient({ globalData }: MarketPageClientProps) {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-2xl font-bold">
+                                <div className=" items-center justify-between">
+                                    <span className="text-xl font-bold">
                                         {formatLargeNumber(globalData.totalMarketCap)}
                                     </span>
                                     <div
-                                       className={`flex items-center space-x-1 ${
+                                       className={` items-center flex space-x-1 ${
                                         isMarketPositive
                                           ? "text-coingecko-green-600"
                                           : "text-red-600"
                                       }`}
                                     >
                                       {isMarketPositive ? (
-                                        <TrendingUp className="w-4 h-4"/>
+                                        <TrendingUp className="w-4 h-4 mt-1"/>
                                       ): (
-                                        <TrendingDown className="w-4 h-4"/>
+                                        <TrendingDown className="w-4 h-4 mt-1"/>
                                       )}
-                                      <span className="text-sm font-medium">
-                                         {isMarketPositive ? "+" : ""}
-                                         {globalData.marketCapChange24h.toFixed(2)}%
-                                      </span>
+                                      <div className="font-medium flex">
+                                         <p>{isMarketPositive ? "+" : ""}</p>
+                                        <p>{globalData.marketCapChange24h.toFixed(2)}%</p>
+                                      </div>
                                     </div>
                                 </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>
-                                    24h Volume
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <span>
-                                    {formatLargeNumber(globalData.totalVolume)}
-                                </span>
                             </CardContent>
                         </Card>
 
@@ -128,7 +115,7 @@ export function MarketPageClient({ globalData }: MarketPageClientProps) {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <span className="text-2xl font-bold">
+                                <span className="text-xl font-bold">
                                 {formatLargeNumber(globalData.totalVolume)}
                                 </span>
                             </CardContent>
@@ -142,7 +129,7 @@ export function MarketPageClient({ globalData }: MarketPageClientProps) {
                             </CardHeader>
                             <CardContent>
                                 <div className="flex items-center justify-between">
-                                <span className="text-2xl font-bold">
+                                <span className="text-xl font-bold">
                                     {globalData.bitcoinDominance}%
                                 </span>
                                 <Badge variant="secondary">

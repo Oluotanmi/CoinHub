@@ -102,7 +102,7 @@ const navigationItems: NavigationItem[] = [
           <div className="flex h-full flex-col">
              <div className="flex items-center justify-between p-4 border-b lg:hidden">
                 <h2  className="text-lg font-semibold">Menu</h2>
-                <Button asChild variant="ghost" size="icon" onClick={onClose}>
+                <Button variant="ghost" size="icon" onClick={onClose}>
                     <X className="h-5 w-5" />
                 </Button>
              </div>
@@ -118,7 +118,7 @@ const navigationItems: NavigationItem[] = [
                          key={item.href}
                          href={item.href}
                          onClick={() => {
-                            if(innerWidth < 1024) {
+                            if(window.innerWidth < 1024) {
                               onClose()
                             }
                          }}
@@ -153,11 +153,11 @@ const navigationItems: NavigationItem[] = [
                  </div>
                  <Link
                    href="/notifications"
-                  //  onClick={() => {
-                  //    if (window.innerWidth < 1024) {
-                  //      onClose();
-                  //    }
-                  //  }}
+                   onClick={() => {
+                     if (window.innerWidth < 1024) {
+                       onClose();
+                     }
+                   }}
                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                  >
                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
@@ -167,11 +167,11 @@ const navigationItems: NavigationItem[] = [
                  </Link>
                  <Link
                   href="/alerts"
-                  // onClick={() => {
-                  //   if (window.innerWidth < 1024) {
-                  //     onClose();
-                  //   }
-                  // }}
+                  onClick={() => {
+                    if (window.innerWidth < 1024) {
+                      onClose();
+                    }
+                  }}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                 >
                   <span className="h-4 w-4 text-yellow-500">🔔</span>

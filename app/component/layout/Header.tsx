@@ -32,6 +32,7 @@ interface HeaderProps {
    setIsMobileMenuOpen?: (open: boolean) => void
 }
 
+
 export const Header: React.FC<HeaderProps> = ({
     variant = "full",
     isMobileMenuOpen = false,
@@ -41,7 +42,13 @@ export const Header: React.FC<HeaderProps> = ({
     const pathname = usePathname();
     const router = useRouter();
 
-    // if(variant === "simplified"){
+    // if(window.innerWidth < 1024) {
+    //   setIsMobileMenuOpen?.(!isMobileMenuOpen)
+    // } else {
+    //   setIsMobileMenuOpen?.(isMobileMenuOpen)
+    // }
+
+//  if(variant === "simplified"){
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -49,18 +56,13 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="flex h-14 items-center justify-between">
                 <div className="flex items-center space-x-3">
                     <Button
-                      asChild
+                      // asChild
                        variant="ghost"
-                       className="xl:hidden"
+                       className="xl:hidden md:hidden"
                        size="icon"
                        onClick={() => setIsMobileMenuOpen?.(!isMobileMenuOpen)}
                       >
-                        {isMobileMenuOpen ? (
-                            <X className="h-5 w-5" />
-                        ) : (
-                            <Menu className="h-5 w-5" />
-                           
-                        )}
+                        {isMobileMenuOpen ? "" : <Menu className="h-5 w-5" /> }
                     </Button>
 
                     <Logo />

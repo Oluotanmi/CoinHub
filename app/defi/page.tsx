@@ -91,7 +91,7 @@ const mockProtocols: DeFiProtocol[] = [
   "Insurance", 
  ];
 
-export default function DeFiPag() {
+export default function DeFiPage() {
   const [protocols, setProtocols] = useState<DeFiProtocol[]>([]);
   const [filteredProtocols, setFilteredProtocols] = useState<DeFiProtocol[]>(
     []
@@ -240,7 +240,7 @@ export default function DeFiPag() {
                     </div>
 
                    {/* Protocols Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {/* <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                       {
                         filteredProtocols.map((protocol) => (
                             <Card>
@@ -248,7 +248,7 @@ export default function DeFiPag() {
                             </Card>
                         ))
                       }
-                    </div>
+                    </div> */}
 
                     </div>
 

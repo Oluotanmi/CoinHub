@@ -164,7 +164,7 @@ export default function ExchangesPage() {
                             </div>
 
                              {/* Summary Stats */}
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
                                 <Card>
                                     <CardHeader className="pb-2">
                                         <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -324,11 +324,11 @@ export default function ExchangesPage() {
 
                                              {/* Actions */}
                                             <div className="flex items-center space-x-2">
-                                                <Button asChild variant="outline" size="sm">
+                                                <Button  variant="outline" size="sm">
                                                     <Star className="w-4 h-4 mr-1" />
                                                     Watch
                                                 </Button>
-                                                <Button asChild variant="outline" size="sm">
+                                                <Button  variant="outline" size="sm">
                                                     <ExternalLink className="w-4 h-4 mr-1" />
                                                     Visit
                                                 </Button>
@@ -358,7 +358,7 @@ export default function ExchangesPage() {
                             </div>
                              {/* Load More */}
                             <div className="text-center">
-                                <Button asChild variant="outline" size="lg">
+                                <Button  variant="outline" size="lg">
                                     Load More Exchanges
                                 </Button>
                             </div>{" "}
