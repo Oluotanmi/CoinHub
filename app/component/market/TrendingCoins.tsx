@@ -5,8 +5,9 @@ import {Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { TrendingUp, TrendingDown, Star, MoreHorizontal } from "lucide-react";
 import { DropdownMenu,DropdownMenuContent,DropdownMenuTrigger,DropdownMenuItem } from "../ui/dropdown-menu";
-import { MoreHorizontal, Star, TrendingUp } from "lucide-react";
+
 
 interface TrendingCoin {
     id: string;
@@ -24,21 +25,37 @@ interface TrendingCoin {
 
   interface TrendingCoinsProps {
     coins: TrendingCoin[];
-    isLoading: boolean;
-   
+    isLoading?: boolean;
+    onAddToWatchlist?: (coinId: string) => void;
+    onAddToPortfolio?: (coinId: string) => void;
   }
 
 export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
         coins,
         isLoading = false,
-      
+        onAddToWatchlist,
+        onAddToPortfolio,
      }) => {
+
+      const formatCurrency = (value: number) => {
+        if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`;
+        if (value >= 1e6) return `$${(value / 1e6).toFixed(2)}M`;
+        if (value >= 1e3) return `$${(value / 1e3).toFixed(2)}K`;
+        return `$${value.toFixed(2)}`;
+      };
+  
+    const formatPercentage = (value: number) => {
+      const sign = value >= 0 ? "+" : "";
+      return `${sign}${value.toFixed(2)}%`;
+    };
+  
 
    const MiniSparkline: React.FC<{ data: number[]; isPositive: boolean }> =({
     data,
     isPositive
    }) => {
-    
+     
+    if (!data || data.length === 0) return null;
     
     const min = Math.min(...data);
     const max = Math.max(...data);
@@ -71,6 +88,23 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
         <CardHeader>
           <CardTitle>Trending</CardTitle>
         </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-muted rounded-full animate-pulse" />
+                <div className="flex-1 space-y-1">
+                  <div className="h-4 bg-muted rounded animate-pulse" />
+                  <div className="h-3 bg-muted rounded animate-pulse w-20" />
+                </div>
+                <div className="text-right space-y-1">
+                  <div className="h-4 bg-muted rounded animate-pulse w-16" />
+                  <div className="h-3 bg-muted rounded animate-pulse w-12" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
       </Card>
     )
 
@@ -111,7 +145,7 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
                         <div className="flex items-center space-x-3 min-w-0 flex-1">
                         <div className="relative w-8 h-8 flex-shrink-0">
                             <Image
-                                src="/cendclothing.png"
+                                src={coin.image}
                                 alt={coin.name}
                                 fill
                                 className="rounded-full object-cover"
@@ -136,34 +170,67 @@ export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
                        </div>
                      
                      </div>
-                        
-                    </div>
+
+                      {/* Mini Chart */}
+                      <div className="hidden sm:block">
+                        <MiniSparkline
+                          data={coin.sparkline}
+                          isPositive={coin.priceChangePercentage24h >= 0}
+                        />
+                      </div>
+
+                       {/* Price Info */}
+                      <div className="text-right space-y-1 min-w-0">
+                          <div className="font-medium">
+                            {formatCurrency(coin.currentPrice)}
+                          </div>
+                          <div className="flex items-center justify-end space-x-1">
+                            {coin.priceChangePercentage24h >= 0 ? (
+                              <TrendingUp className="h-3 w-3 text-coingecko-green-500" />
+                            ) : (
+                              <TrendingDown className="h-3 w-3 text-red-500" />
+                            )}
+                            <span
+                              className={`text-xs font-medium ${
+                                coin.priceChangePercentage24h >= 0
+                                  ? "text-coingecko-green-500"
+                                  : "text-red-500"
+                              }`}
+                            >
+                              {formatPercentage(coin.priceChangePercentage24h)}
+                            </span>
+                          </div>
+                        </div>
+                
+
+                      {/* Actions */}
+                      <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                          <Button asChild variant="ghost" size="icon" className="w-8 h-8" >
+                              <MoreHorizontal className="h-4 w-4"/>
+                          </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => onAddToWatchlist?.(coin.id)}>
+                          <Star className="mr-2 h-4 w-4" />
+                          Add to Watchlist
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => onAddToPortfolio?.(coin.id)}>
+                          <TrendingUp className="mr-2 h-4 w-4" />
+                          Add to Portfolio
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href={`/coin/${coin.id}`}>View Details</Link>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                  </DropdownMenu>
+
+                </div>
                 ))
                }
             </div>
 
-            {/* Actions */}
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button asChild variant="ghost" size="icon" className="w-8 h-8" >
-                        <MoreHorizontal className="h-4 w-4"/>
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                        <Star />
-                        Add to Watchlist
-                    </DropdownMenuItem>
-                    <DropdownMenuItem >
-                    <TrendingUp className="mr-2 h-4 w-4" />
-                    Add to Portfolio
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/">View Details</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-
+          
             {coins.length > 5 && (
                 <div className="mt-4 pt-4 border-t">
                   <Button  variant="outline" className="w-full" asChild>

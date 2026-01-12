@@ -134,7 +134,7 @@ export default function Home() {
      <HomeLayout>
         <HomePageClient
            trendingCoins = {mockTrendingCoins}
-           newsArticles = {mockNewsArticles}
+           newsArticles={mockNewsArticles}
            portfolio = {mockPortfolio}
         />
      </HomeLayout>

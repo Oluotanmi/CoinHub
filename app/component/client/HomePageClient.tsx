@@ -65,7 +65,7 @@ interface MockPortfolio {
 
 interface HomePageClientProps {
     trendingCoins:MockTrendingCoin[];
-    newsArticle:MockNewsArticle[];
+    newsArticles:MockNewsArticle[];
     portfolio:MockPortfolio
 }
 
@@ -191,7 +191,7 @@ export function HomePageClient({
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
            {/* Left Column - Trending Coins */}
            <div className="lg:col-span-1">
-             <TrendingCoins 
+             <TrendingCoins
                  coins={trendingCoins}
                  onAddToWatchlist={handleAddToWatchlist}
                  onAddToPortfolio={handleAddToPortfolio}
