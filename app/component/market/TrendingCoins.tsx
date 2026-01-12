@@ -25,15 +25,13 @@ interface TrendingCoin {
   interface TrendingCoinsProps {
     coins: TrendingCoin[];
     isLoading: boolean;
-    onAddToWatchlist?: (coinId: String) => void;
-    onAddToPortfolio?: (coinId: String) => void;
+   
   }
 
 export const TrendingCoins: React.FC<TrendingCoinsProps> = ({
         coins,
         isLoading = false,
-        onAddToWatchlist,
-        onAddToPortfolio
+      
      }) => {
 
    const MiniSparkline: React.FC<{ data: number[]; isPositive: boolean }> =({

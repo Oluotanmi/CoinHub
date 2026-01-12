@@ -1,4 +1,4 @@
-
+import React from "react";
 import HomeLayout from "./component/layout/HomeLayout";
 import { HomePageClient } from "./component/client/HomePageClient";
 import { Footer } from "./component/layout/Footer";
@@ -60,7 +60,7 @@ const mockNewsArticles = [
       "https://images.unsplash.com/photo-1605792657660-596af9009e82?w=400&h=200&fit=crop",
     sourceUrl: "https://example.com/news/1",
     source: "CryptoNews",
-    category: "bitcoin" as const,
+    category: "bitcoin" as const ,
     readTime: 3,
     tags: ["bitcoin", "institutional", "adoption"],
   },
@@ -134,7 +134,7 @@ export default function Home() {
      <HomeLayout>
         <HomePageClient
            trendingCoins = {mockTrendingCoins}
-           newsArticle = {mockNewsArticles}
+           newsArticles = {mockNewsArticles}
            portfolio = {mockPortfolio}
         />
      </HomeLayout>

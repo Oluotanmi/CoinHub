@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { Header } from "../component/layout/Header"
 import Sidebar from "../component/layout/Sidebar";
-import { Card, CardContent } from "../component/ui/card";
+import { Button } from "../component/ui/button";
+import { Card, CardContent, CardHeader,CardTitle,CardDescription } from "../component/ui/card";
+import { Badge } from "../component/ui/badge";
 import { LoadingSpinner } from "../component/common/LoadingSpinner";
 import {
     DollarSign,
@@ -112,6 +114,19 @@ export default function DeFiPage() {
   useEffect(() => {
     let filtered = protocols;
   })
+
+  const formatCurrency = (amount: number) => {
+    if(amount >= 1e9 ) return `$${(amount / 1e9).toFixed(1)}B`;
+    if (amount >= 1e6) return `$${(amount / 1e6).toFixed(1)}M`;
+    if (amount >= 1e3) return `$${(amount / 1e3).toFixed(1)}K`;
+    return `$${amount.toFixed(2)}`;
+  };
+
+  const formatNumber = (num: number) => {
+    if (num >= 1e6) return `${(num / 1e6).toFixed(1)}M`;
+    if (num >= 1e3) return `${(num / 1e3).toFixed(1)}K`;
+    return num.toLocaleString();
+  };
 
   if(isLoading){
     return (
@@ -240,15 +255,125 @@ export default function DeFiPage() {
                     </div>
 
                    {/* Protocols Grid */}
-                    {/* <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                      {
-                        filteredProtocols.map((protocol) => (
-                            <Card>
+                   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                      {filteredProtocols.map((protocol) => (
+                            <Card
+                              key={protocol.id}
+                              className="hover:shadow-lg transition-shadow cursor-pointer"
+                            >
+                              <CardHeader className="pb-3">
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center space-x-3">
+                                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                      <Coins className="h-4 w-4 text-white" />
+                                    </div>
+                                    <div>
+                                      <CardTitle className="text-lg">
+                                        {protocol.name}
+                                      </CardTitle>
+                                      <CardDescription>{protocol.symbol}</CardDescription>
+                                    </div>
+                                  </div>
+                                  <Badge variant="secondary">{protocol.category}</Badge>
+                                </div>
+                              </CardHeader>
+
+                              <CardContent className="space-y-4">
+                                <p className="text-sm text-muted-foreground">
+                                  {protocol.description}
+                                </p>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div>
+                                    <p className="text-sm text-muted-foreground">TVL</p>
+                                    <div className="flex items-center space-x-1">
+                                      <p className="font-semibold">
+                                        {formatCurrency(protocol.tvl)}
+                                      </p>
+                                      <div
+                                        className={`flex items-center ${
+                                          protocol.tvlChange24h >= 0
+                                            ? "text-coingecko-green-500"
+                                            : "text-red-500"
+                                        }`}
+                                      >
+                                        {protocol.tvlChange24h >= 0 ? (
+                                          <ArrowUpRight className="h-3 w-3" />
+                                        ) : (
+                                          <ArrowDownRight className="h-3 w-3" />
+                                        )}
+                                        <span className="text-xs">
+                                          {Math.abs(protocol.tvlChange24h)}%
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm text-muted-foreground">APY</p>
+                                    <p className="font-semibold text-coingecko-green-500">
+                                      {protocol.apy}%
+                                    </p>
+                                  </div>
+
+                                  <div>
+                                    <p className="text-sm text-muted-foreground">Users</p>
+                                    <div className="flex items-center space-x-1">
+                                      <Users className="h-3 w-3" />
+                                      <p className="font-semibold">
+                                        {formatNumber(protocol.users)}
+                                      </p>
+                                    </div>
+                                  </div>
+                                   
+                                  <div>
+                                    <p className="text-sm text-muted-foreground">
+                                      Chains
+                                    </p>
+                                    <p className="font-semibold">
+                                      {protocol.chains.length}
+                                    </p>
+                                  </div>
                                 
+                                  <div className="space-y-2">
+                                    <p className="text-sm text-muted-foreground">
+                                      Supported Chains
+                                    </p>
+                                    <div className="flex flex-wrap gap-1">
+                                      {protocol.chains.map((chain) => (
+                                        <Badge
+                                          key={chain}
+                                          variant="outline"
+                                          className="text-xs"
+                                        >
+                                          {chain}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                 </div>
+
+                                 <div className="space-y-2">
+                                  <p className="text-sm text-muted-foreground">Risks</p>
+                                  <div className="flex flex-wrap gap-1">
+                                    {protocol.risks.map((risk) => (
+                                      <Badge
+                                        key={risk}
+                                        variant="destructive"
+                                        className="text-xs"
+                                      >
+                                        <Lock className="h-2 w-2 mr-1" />
+                                        {risk}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                <Button className="w-full">View Protocol</Button>
+
+                                </div>
+                              </CardContent>
                             </Card>
-                        ))
-                      }
-                    </div> */}
+                        ))}
+                    </div>
 
                     </div>
 

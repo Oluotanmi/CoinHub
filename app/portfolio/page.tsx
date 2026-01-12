@@ -1,4 +1,4 @@
-import { PortfolioPageClient } from "../component/client/PortfolioPageClient";
+// import { PortfolioPageClient } from "../component/client/PortfolioPageClient";
 
 // Mock portfolio data
 const mockPortfolio = {
@@ -20,8 +20,8 @@ const mockPortfolio = {
     sharpeRatio: 1.2,
   };
 
-  export default function PortfolioPage() {
-    // return <PortfolioPageClient
-    //            portfolio={mockPortfolio}
-    //         />
-  }
+  // export default function PortfolioPage() {
+  // //   return <PortfolioPageClient
+  // //              portfolio={mockPortfolio}
+  // //           />
+  // // }
